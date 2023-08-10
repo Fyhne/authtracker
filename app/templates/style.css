@@ -1,0 +1,144 @@
+main {
+  background-color: white;
+  width: 615px;
+  margin: -60px auto;
+}
+
+.logo {
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.QR {
+  float: right;
+  margin-top: -13%;
+  margin-right: 5%;
+}
+
+.piechart {
+	position: relative;
+	height: 500px; 
+  width: 500px;
+  float: left;
+  margin-left: 11%;
+}
+
+.common {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+}
+
+.border { 
+  border: 3px solid #EEE; 
+  top: -6px; 
+  left: -6px; 
+  width: 506px; 
+  height: 506px; 
+}
+
+.base { 
+   background: #EEE; 
+}
+
+.slice {
+      /* https://www.w3schools.com/cssref/pr_pos_clip.asp */
+    clip: rect(0px, 250px, 500px, 0);   
+}
+
+/* eerste spie: bestaat uit een slice en een container */
+
+.slice_1_w {
+      /* met deze waarde geef je de procentuele grootte aan van de spie */
+      /* 30% weergeven */
+      /* Startpositie: 180°=50% => 1% = 3,6° => */
+      /* 30 x 3,6° = 108° */
+      /* Om 30° over te houden moeten we  180-108°=73 roteren */
+     background-color: RGBA(235, 184, 208, 1.00);
+     transform: rotate(0deg); 
+      /* vendor prefixing staat wel op autprefixer in de settings!*/
+}
+
+.slice_1_c {
+      /* met deze waarde positioneer je de spie op de cirkel */
+	transform: rotate(-38deg);
+}
+
+/* tweede spie: opnieuw een slice en een container */
+
+.slice_2_w {
+      /* met deze waarde geef je de procentuele grootte aan van de spie */
+      /* 20% weergeven */
+      /* Startpositie: 180°=50% => 1% = 3,6° => */
+      /* 20 x 3,6° = 72° */
+      /* Om 20° over te houden moeten we  180-72° roteren */
+	background-color: rgba(102,205,170,1.00);
+	transform: rotate(90deg);
+}
+
+.slice_2_c {
+      /* met deze waarde positioneer je de spie op de cirkel */
+	transform: rotate(52deg);
+}
+
+.slice_3_w {
+      /* met deze waarde geef je de procentuele grootte aan van de spie */
+      /* 10% weergeven */
+      /* Startpositie: 180°=50% => 1% = 3,6° => */
+      /* 10 x 3,6° = 36° */
+      /* Om 10° over te houden moeten we  180-36° roteren */
+	background-color: rgba(250,128,114,1.00);
+	transform: rotate(144deg);
+}
+
+.slice_3_c {
+      /* met deze waarde positioneer je de spie op de cirkel */
+	transform: rotate(88deg);
+}
+
+.slice_4_w {
+      /* met deze waarde geef je de procentuele grootte aan van de spie */
+      /* 30% weergeven */
+      /* Startpositie: 180°=50% => 1% = 3,6° => */
+      /* 30 x 3,6° = 108° */
+      /* Om 30° over te houden moeten we  180-108°=73 roteren */
+     background-color: RGBA(235, 184, 208, 1.00);
+     transform: rotate(40deg); 
+      /* vendor prefixing staat wel op autprefixer in de settings!*/
+}
+
+.slice_4_c {
+      /* met deze waarde positioneer je de spie op de cirkel */
+	transform: rotate(-132deg);
+}
+
+
+p.label {
+	color: black; 
+	font-family: helvetica; 
+	position: absolute;
+	border-bottom: 2px solid black;
+	width: 110px;
+}
+
+.slice_1_label {
+  top: 300px;
+  left: -110px;
+  text-align: left;
+  padding: 0px 60px 0px 0px;
+}
+
+.slice_2_label {
+   top: 35px;
+   left: 380px;
+  text-align: right;
+  padding: 0px 0px 0px 60px;
+}
+
+.slice_3_label {
+    top: 170px;
+    left: 455px;
+  text-align: right;
+  padding: 0px 0px 0px 60px;
+}

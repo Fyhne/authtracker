@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+<h1>Pie chart</h1>
+
+<div id="piechart"></div>
+
+<div>
+  <label for="workSlider">Work:</label>
+  <input type="range" id="workSlider" min="0" max="24" step="1" value="2">
+</div>
+<div>
+  <label for="friendsSlider">Friends:</label>
+  <input type="range" id="friendsSlider" min="0" max="24" step="1" value="2">
+</div>
+<div>
+  <label for="eatSlider">Eat:</label>
+  <input type="range" id="eatSlider" min="0" max="24" step="1" value="4">
+</div>
+<div>
+  <label for="tvSlider">TV:</label>
+  <input type="range" id="tvSlider" min="0" max="24" step="1" value="4">
+</div>
+<div>
+  <label for="gymSlider">Gym:</label>
+  <input type="range" id="gymSlider" min="0" max="24" step="1" value="2">
+</div>
+<div>
+  <label for="sleepSlider">Sleep:</label>
+  <input type="range" id="sleepSlider" min="0" max="24" step="1" value="10">
+</div>
+
+<script type="text/javascript">
+  // Load google charts
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  // Draw the chart and set the chart values
+  function drawChart() {
+    var workValue = parseFloat(document.getElementById('workSlider').value);
+    var friendsValue = parseFloat(document.getElementById('friendsSlider').value);
+    var eatValue = parseFloat(document.getElementById('eatSlider').value);
+    var tvValue = parseFloat(document.getElementById('tvSlider').value);
+    var gymValue = parseFloat(document.getElementById('gymSlider').value);
+    var sleepValue = parseFloat(document.getElementById('sleepSlider').value);
+    
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Work', workValue],
+      ['Friends', friendsValue],
+      ['Eat', eatValue],
+      ['TV', tvValue],
+      ['Gym', gymValue],
+      ['Sleep', sleepValue]
+    ]);
+  
+    // Optional; add a title and set the width and height of the chart
+    var options = {'title':'My Actual Day', 'width':550, 'height':400};
+  
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+  
+  // Update the chart when slider values change
+  document.querySelectorAll('input[type="range"]').forEach(function(slider) {
+    slider.addEventListener('input', drawChart);
+  });
+</script>
+
+</body>
+</html>
