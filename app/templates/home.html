@@ -12,26 +12,32 @@
 <div>
   <label for="workSlider">Work:</label>
   <input type="range" id="workSlider" min="0" max="24" step="1" value="2">
+  <span id="workValue">2</span> hours
 </div>
 <div>
   <label for="friendsSlider">Friends:</label>
   <input type="range" id="friendsSlider" min="0" max="24" step="1" value="2">
+  <span id="friendsValue">2</span> hours
 </div>
 <div>
   <label for="eatSlider">Eat:</label>
   <input type="range" id="eatSlider" min="0" max="24" step="1" value="4">
+  <span id="eatValue">4</span> hours
 </div>
 <div>
   <label for="tvSlider">TV:</label>
   <input type="range" id="tvSlider" min="0" max="24" step="1" value="4">
+  <span id="tvValue">4</span> hours
 </div>
 <div>
   <label for="gymSlider">Gym:</label>
   <input type="range" id="gymSlider" min="0" max="24" step="1" value="2">
+  <span id="gymValue">2</span> hours
 </div>
 <div>
   <label for="sleepSlider">Sleep:</label>
   <input type="range" id="sleepSlider" min="0" max="24" step="1" value="10">
+  <span id="sleepValue">10</span> hours
 </div>
 
 <script type="text/javascript">
@@ -64,12 +70,52 @@
     // Display the chart inside the <div> element with id="piechart"
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
+    
+    // Update the slider value displays
+    document.getElementById('workValue').textContent = workValue + " hours";
+    document.getElementById('friendsValue').textContent = friendsValue + " hours";
+    document.getElementById('eatValue').textContent = eatValue + " hours";
+    document.getElementById('tvValue').textContent = tvValue + " hours";
+    document.getElementById('gymValue').textContent = gymValue + " hours";
+    document.getElementById('sleepValue').textContent = sleepValue + " hours";
   }
   
   // Update the chart when slider values change
   document.querySelectorAll('input[type="range"]').forEach(function(slider) {
     slider.addEventListener('input', drawChart);
   });
+
+
+  // Inside the 'input' event listener for the sliders
+document.querySelectorAll('input[type="range"]').forEach(function(slider) {
+  slider.addEventListener('input', function() {
+    // Calculate the total hours excluding the current slider
+    var totalHoursExcludingThisSlider = 0;
+    document.querySelectorAll('input[type="range"]').forEach(function(otherSlider) {
+      if (otherSlider !== slider) {
+        totalHoursExcludingThisSlider += parseFloat(otherSlider.value);
+      }
+    });
+
+    // Calculate the available hours remaining after excluding other sliders
+    var remainingHours = 24 - totalHoursExcludingThisSlider;
+
+    // Calculate the maximum value for this slider to stay within 24 hours
+    var maxSliderValue = Math.min(parseFloat(slider.value) + remainingHours, 24);
+
+    // Ensure the current slider value is within bounds
+    if (parseFloat(slider.value) > maxSliderValue) {
+      slider.value = maxSliderValue;
+    }
+
+    // Update the slider's 'max' attribute
+    slider.max = maxSliderValue;
+
+    // Update the chart with adjusted values
+    drawChart();
+  });
+});
+
 </script>
 
 </body>
